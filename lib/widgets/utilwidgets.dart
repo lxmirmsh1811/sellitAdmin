@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 
 class UtilWidgets{
 
+  static Widget emptyWidget(){
+    return Container();
+  }
+
   static Widget progress() {
       return Center(
         child: CircularProgressIndicator(),

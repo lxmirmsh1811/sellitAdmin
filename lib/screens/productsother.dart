@@ -6,20 +6,20 @@ import 'package:app_drawer/models/productstatusmodel.dart';
 import 'package:app_drawer/services/productstatusrepo.dart';
 import 'package:flutter/material.dart';
 
-class Product extends StatefulWidget{
+class ProductsOther extends StatefulWidget{
   ProductModel productModel = ProductModel();
-  Product(this.productModel);
+  ProductsOther(this.productModel);
 
   @override
   State<StatefulWidget> createState() {
-    return ProductState(productModel);
+    return ProductsOtherState(productModel);
   }
 }
 
-class ProductState extends State<Product>{
+class ProductsOtherState extends State<ProductsOther>{
   
   ProductModel productModel = ProductModel();
-  ProductState(this.productModel);
+  ProductsOtherState(this.productModel);
    @override
   Widget build(BuildContext context) {
     Color iconColor = Theme.of(context).accentColor;
@@ -31,8 +31,8 @@ class ProductState extends State<Product>{
       body: Column(
         children: <Widget>[
           Container(
-            height: 200.0,
-            child: Image.network(productModel.image.first.url,fit: BoxFit.contain,),
+            height: 250.0,
+            child:Image.network(productModel.image.first.url, fit: BoxFit.contain,) ,
           ),
           Padding(padding: EdgeInsets.only(top: 15.0)),
           Container(
@@ -45,26 +45,6 @@ class ProductState extends State<Product>{
                 ),
             ),
           ),
-          Row(
-            children: <Widget>[
-              RaisedButton(
-                child: Text('Approve'),
-                color: iconColor,
-                onPressed: () {
-                     _postStatus(productModel.product_id)
-                      .then((data) {
-                    if (data) {
-                      debugPrint('Product Approved');
-                      Navigator.of(context).pushNamed("/approved");
-                    }
-                  });
-
-                }, 
-                
-              ),
-              RaisedButton(onPressed: (){}, child: Text('Deny'), color: Colors.grey,)
-            ],
-          )
 
 
         ],
@@ -74,14 +54,7 @@ class ProductState extends State<Product>{
     );
     return app;
   }
-
-  Future<bool> _postStatus(int product_id) async {
-    ProductStatusModel input =
-        ProductStatusModel(product_id: product_id ,status: 1 );
-    bool result = await ProductStatusServices().postStatus(input);
-    return result;
-  }
-  }
+}
   
 
 

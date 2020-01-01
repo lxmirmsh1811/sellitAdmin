@@ -1,5 +1,8 @@
 //import 'package:app_drawer/services/authrepo.dart';
 //import 'package:app_drawer/services/authrepo.dart';
+import 'package:app_drawer/models/authmodel.dart';
+import 'package:app_drawer/models/authresponsemodel.dart';
+import 'package:app_drawer/services/authrepo.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatefulWidget{
@@ -11,6 +14,10 @@ class MyDrawer extends StatefulWidget{
 }
 
 class MyDrawerState extends State<MyDrawer>{
+
+  String username;
+  MyDrawerState();
+  MyDrawerState.username(this.username);
   
   final mainColor = const Color(0xFFFB777A);
   final secColor = const Color(0xFFFFFFFF);
@@ -33,11 +40,7 @@ class MyDrawerState extends State<MyDrawer>{
   }
 
   Widget _drawerHeader(){
-    //String test = auth.AuthServices.adminName;
-
-    // String adminName = admin.adminName;
-    // debugPrint(adminName);
-
+    
     var app = DrawerHeader(
       decoration: BoxDecoration(
         color: secColor,
@@ -52,13 +55,19 @@ class MyDrawerState extends State<MyDrawer>{
                 child: Image.asset('images/admin.png', width:80.0, height: 80.0),
               ),
             ),
-            Text('Testing',style: TextStyle(color: textColor),)
+            Text('Admin',style: TextStyle(color: textColor, fontSize: 12.0, fontWeight: FontWeight.bold),),
+            Text('Admin',style: TextStyle(color: mainColor, fontSize: 10.0),)
           ],
         ),
       ),
     );
     return app;
   }
+
+  // Future<String> _getUserName(AuthModel userName) async {
+  //   var username = await AuthServices().getUser(userName);
+  //   return username;
+  // }
 
   Widget _dashboard(BuildContext context){
 
@@ -101,6 +110,9 @@ class MyDrawerState extends State<MyDrawer>{
     var app = ListTile(
       leading: Icon(Icons.people),
       title: Text('Users'),
+      onTap: (){
+        Navigator.popAndPushNamed(context, '/users');
+      },
     );
     return app;
   }

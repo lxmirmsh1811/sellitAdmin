@@ -9,7 +9,6 @@ class Login extends StatefulWidget{
   }
 }
 class LoginState extends State<Login>{
-
   final mainColor = const Color(0xFFFB777A);
   final secColor = const Color(0xFFFFFFFF);
   final textColor = const Color(0xFF000000);
@@ -102,6 +101,6 @@ class LoginState extends State<Login>{
     AuthModel input = AuthModel(matrikel_number: username, password: password);
     bool result = await AuthServices().authUser(input);
     return result;
-  }
+  }    
 
 }

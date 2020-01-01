@@ -3,10 +3,11 @@
 //import 'package:carousel_pro/carousel_pro.dart';
 import 'package:app_drawer/models/productmodel.dart';
 import 'package:app_drawer/models/productstatusmodel.dart';
-import 'package:app_drawer/services/productstatusrepo.dart';
+import 'package:app_drawer/services/productrepo.dart';
+//import 'package:app_drawer/services/productstatusrepo.dart';
 import 'package:flutter/material.dart';
 
-class Product extends StatefulWidget{
+class Product extends StatefulWidget {
   ProductModel productModel = ProductModel();
   Product(this.productModel);
 
@@ -16,23 +17,28 @@ class Product extends StatefulWidget{
   }
 }
 
-class ProductState extends State<Product>{
+class ProductState extends State<Product> {
   
   ProductModel productModel = ProductModel();
   ProductState(this.productModel);
-   @override
+
+
+  @override
   Widget build(BuildContext context) {
     Color iconColor = Theme.of(context).accentColor;
     var app = Scaffold(
       appBar: AppBar(
-        title: Wrap(children:<Widget>[Text(productModel.name)]),
+        title: Wrap(children: <Widget>[Text(productModel.name)]),
         iconTheme: IconThemeData(color: iconColor),
       ),
       body: Column(
         children: <Widget>[
           Container(
             height: 200.0,
-            child: Image.network(productModel.image.first.url,fit: BoxFit.contain,),
+            child: Image.network(
+              productModel.image.first.url,
+              fit: BoxFit.contain,
+            ),
           ),
           Padding(padding: EdgeInsets.only(top: 15.0)),
           Container(
@@ -42,7 +48,7 @@ class ProductState extends State<Product>{
                   Text('Product Description'),
                   Text(productModel.description),
                 ],
-                ),
+              ),
             ),
           ),
           Row(
@@ -51,37 +57,31 @@ class ProductState extends State<Product>{
                 child: Text('Approve'),
                 color: iconColor,
                 onPressed: () {
-                     _postStatus(productModel.product_id)
-                      .then((data) {
+                  _postStatus(productModel.product_id).then((data) {
                     if (data) {
                       debugPrint('Product Approved');
                       Navigator.of(context).pushNamed("/approved");
                     }
                   });
-
-                }, 
-                
+                },
               ),
-              RaisedButton(onPressed: (){}, child: Text('Deny'), color: Colors.grey,)
+              RaisedButton(
+                onPressed: () {},
+                child: Text('Deny'),
+                color: Colors.grey,
+              )
             ],
           )
-
-
         ],
-
       ),
-
     );
     return app;
   }
 
   Future<bool> _postStatus(int product_id) async {
     ProductStatusModel input =
-        ProductStatusModel(product_id: product_id ,status: 1 );
-    bool result = await ProductStatusServices().postStatus(input);
+        ProductStatusModel(product_id: product_id, status: 1);
+    bool result = await ProductService().postStatus(input);
     return result;
   }
-  }
-  
-
-
+}

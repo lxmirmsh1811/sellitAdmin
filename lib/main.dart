@@ -10,6 +10,7 @@ import 'package:app_drawer/screens/pending.dart';
 import 'package:app_drawer/screens/product.dart';
 import 'package:app_drawer/screens/sold.dart';
 import 'package:app_drawer/screens/subcategory.dart';
+import 'package:app_drawer/screens/users.dart';
 import 'package:flutter/material.dart';
 import 'package:app_drawer/screens/login.dart';
 
@@ -43,6 +44,7 @@ void main(){
       "/pending": (BuildContext context) =>  PendingProducts(),
       "/sold":(BuildContext context) => SoldProducts(),
       "/inactive":(BuildContext context) => InvalidProducts(),
+      "/users": (BuildContext context) => User(),
       //"/productPage":(BuildContext context) =>  Product(String name,),
 
     },

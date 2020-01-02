@@ -64,11 +64,6 @@ class MyDrawerState extends State<MyDrawer>{
     return app;
   }
 
-  // Future<String> _getUserName(AuthModel userName) async {
-  //   var username = await AuthServices().getUser(userName);
-  //   return username;
-  // }
-
   Widget _dashboard(BuildContext context){
 
     var app = ListTile(

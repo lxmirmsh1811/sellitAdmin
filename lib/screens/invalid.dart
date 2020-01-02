@@ -4,6 +4,7 @@ import 'package:app_drawer/screens/productsother.dart';
 import 'package:app_drawer/services/productrepo.dart';
 //import 'package:app_drawer/utilis/trimName.dart';
 import 'package:app_drawer/widgets/utilwidgets.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -24,7 +25,7 @@ class _InvalidProductsState extends State<InvalidProducts> {
   }
 
   Future<void> productGet() async {
-    productModels = await ProductService().getProductsByStatus("4");
+    productModels = await ProductService().getProductsByStatus("5");
   }
 
   @override
@@ -35,7 +36,7 @@ class _InvalidProductsState extends State<InvalidProducts> {
       appBar: AppBar(
         iconTheme: IconThemeData(color: iconColor),
         title: Text(
-          'Invalid Products',
+          'Inactive Products',
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -60,6 +61,11 @@ class _InvalidProductsState extends State<InvalidProducts> {
           } else {
             name = trimProductName(name);
           }
+          List<dynamic> imageUrls = List<dynamic>();
+          productModel.image.forEach((i){
+            imageUrls.add(NetworkImage(i.url));
+          });
+          
           return Padding(
             padding: EdgeInsets.all(5.0),
             child: InkWell(
@@ -88,11 +94,12 @@ class _InvalidProductsState extends State<InvalidProducts> {
                         ],
                       ),
                     ),
-                    child: FadeInImage.memoryNetwork(
-                      placeholder: kTransparentImage,
-                      image: productModel.image.first.url,
-                      fit: BoxFit.fitHeight,
-                    ),
+                    child: Carousel(images: imageUrls, autoplay: false,dotSize: 1,),
+                    // child: FadeInImage.memoryNetwork(
+                    //   placeholder: kTransparentImage,
+                    //   image: productModel.image.first.url,
+                    //   fit: BoxFit.fitHeight,
+                    // ),
                     // child: Image.asset(
                     //   'images/admin.png',
                     //   fit: BoxFit.contain,

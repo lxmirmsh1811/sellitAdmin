@@ -134,7 +134,7 @@ class AddSubCategoryState extends State<AddSubCategory>{
       ),
      onPressed: () {
         debugPrint('Close Category Pressed');
-        //Navigator.of(context).pushNamed("/home");
+        Navigator.of(context).pushNamed("/category");
       }
     )
       )

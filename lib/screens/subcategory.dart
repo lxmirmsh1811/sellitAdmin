@@ -1,7 +1,5 @@
 import 'package:app_drawer/models/categorymodel.dart';
 import 'package:app_drawer/screens/add_sub.dart';
-import 'package:app_drawer/screens/drawer.dart';
-import 'package:app_drawer/services/subcatrepo.dart';
 import 'package:flutter/material.dart';
 
 class SubCategory extends StatefulWidget{

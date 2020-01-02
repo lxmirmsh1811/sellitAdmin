@@ -5,12 +5,12 @@ part 'productstatusmodel.g.dart';
 
 @JsonSerializable()
 class ProductStatusModel {
-  int product_id;
+  int productid;
   int status;
     
  
 
-  ProductStatusModel({this.product_id, this.status});
+  ProductStatusModel({this.productid, this.status});
 
   factory ProductStatusModel.fromJson(Map<String, dynamic> json) =>
       _$ProductStatusModelFromJson(json);

@@ -5,6 +5,7 @@ import 'package:app_drawer/screens/productsother.dart';
 import 'package:app_drawer/services/productrepo.dart';
 import 'package:app_drawer/utilis/trimName.dart';
 import 'package:app_drawer/widgets/utilwidgets.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -61,9 +62,9 @@ class _ApprovedProductsState extends State<ApprovedProducts> {
           } else {
             name = trimProductName(name);
           }
-          List<String> imageUrls = List<String>();
+          List<dynamic> imageUrls = List<dynamic>();
           productModel.image.forEach((i){
-            imageUrls.add(productModel.image.first.url);
+            imageUrls.add(NetworkImage(i.url));
           });
           
           return Padding(
@@ -95,11 +96,12 @@ class _ApprovedProductsState extends State<ApprovedProducts> {
                         ],
                       ),
                     ),
-                    child: FadeInImage.memoryNetwork(
+                    child: Carousel(images: imageUrls, autoplay: false, dotSize: 1,)
+                    /*FadeInImage.memoryNetwork(
                       placeholder: kTransparentImage,
                       image: productModel.image.first.url,
                       fit: BoxFit.fitHeight,
-                    ),
+                    )*/,
                     // child: Image.asset(
                     //   'images/admin.png',
                     //   fit: BoxFit.contain,

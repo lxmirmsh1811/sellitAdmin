@@ -7,7 +7,7 @@ part 'authresponsemodel.g.dart';
 class AuthResponseModel {
   String status;
   String username;
-
+  AuthResponseModel.user(this.username);
   AuthResponseModel({this.status, this.username});
 
   factory AuthResponseModel.fromJson(Map<String, dynamic> json) =>

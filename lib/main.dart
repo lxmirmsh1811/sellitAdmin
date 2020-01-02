@@ -36,7 +36,6 @@ void main(){
     routes:{
       "/home": (BuildContext context) => HomeScreen(),
       "/category": (BuildContext context) => Category(),
-   //   "/subCategory": (BuildContext context) => new SubCategory(),
       "/addCat" : (BuildContext context) => AddCategory(),
       "/addSubCat": (BuildContext context) =>  AddSubCategory(),
       "/logout" : (BuildContext context) => Login(),
@@ -45,7 +44,6 @@ void main(){
       "/sold":(BuildContext context) => SoldProducts(),
       "/inactive":(BuildContext context) => InvalidProducts(),
       "/users": (BuildContext context) => User(),
-      //"/productPage":(BuildContext context) =>  Product(String name,),
 
     },
   );

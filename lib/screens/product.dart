@@ -1,10 +1,7 @@
-//import 'package:app_drawer/models/productmodel.dart';
-//import 'package:app_drawer/services/productrepo.dart';
-//import 'package:carousel_pro/carousel_pro.dart';
 import 'package:app_drawer/models/productmodel.dart';
 import 'package:app_drawer/models/productstatusmodel.dart';
 import 'package:app_drawer/services/productrepo.dart';
-//import 'package:app_drawer/services/productstatusrepo.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 
 class Product extends StatefulWidget {
@@ -18,70 +15,149 @@ class Product extends StatefulWidget {
 }
 
 class ProductState extends State<Product> {
-  
   ProductModel productModel = ProductModel();
   ProductState(this.productModel);
-
 
   @override
   Widget build(BuildContext context) {
     Color iconColor = Theme.of(context).accentColor;
+
+    List<dynamic> imageUrls = List<dynamic>();
+    productModel.image.forEach((i) {
+      imageUrls.add(NetworkImage(i.url));
+    });
+
     var app = Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Wrap(children: <Widget>[Text(productModel.name)]),
         iconTheme: IconThemeData(color: iconColor),
       ),
-      body: Column(
-        children: <Widget>[
-          Container(
-            height: 200.0,
-            child: Image.network(
-              productModel.image.first.url,
-              fit: BoxFit.contain,
-            ),
-          ),
-          Padding(padding: EdgeInsets.only(top: 15.0)),
-          Container(
-            child: Card(
-              child: Column(
-                children: <Widget>[
-                  Text('Product Description'),
-                  Text(productModel.description),
-                ],
-              ),
-            ),
-          ),
-          Row(
-            children: <Widget>[
-              RaisedButton(
-                child: Text('Approve'),
-                color: iconColor,
-                onPressed: () {
-                  _postStatus(productModel.product_id).then((data) {
-                    if (data) {
-                      debugPrint('Product Approved');
-                      Navigator.of(context).pushNamed("/approved");
-                    }
-                  });
-                },
-              ),
-              RaisedButton(
-                onPressed: () {},
-                child: Text('Deny'),
-                color: Colors.grey,
-              )
-            ],
-          )
-        ],
-      ),
+      body: Column(children: <Widget>[
+        _getImages(imageUrls),
+        Padding(padding: EdgeInsets.only(bottom: 10.0),),
+        _getDescription(productModel.description),
+        _getMoreDescription(productModel.more_details),
+        _getButtonFunc(productModel)
+      ]),
     );
     return app;
   }
 
-  Future<bool> _postStatus(int product_id) async {
+  Future<bool> _postApproveStatus(int product_id) async {
     ProductStatusModel input =
-        ProductStatusModel(product_id: product_id, status: 1);
+        ProductStatusModel(productid: product_id, status: 1);
     bool result = await ProductService().postStatus(input);
     return result;
+  }
+
+  Future<bool> _postDenyStatus(int product_id) async {
+    ProductStatusModel input =
+        ProductStatusModel(productid: product_id, status: 5);
+    bool result = await ProductService().postStatus(input);
+    return result;
+  }
+
+  Widget _getImages(List imageUrls) {
+    return Container(
+      height: 300.0,
+      child: Carousel(
+        images: imageUrls,
+        autoplay: false,
+        dotSize: 1,
+      ),
+    );
+  }
+
+  Widget _getDescription(String description) {
+    return Container(
+      padding: EdgeInsets.all(20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            _getTitle(),
+            Text(
+              productModel.description,
+              textAlign: TextAlign.start,
+              style: TextStyle(fontSize: 18.0),
+            ),
+          ],
+      ),
+    );
+  }
+
+  Widget _getButtonFunc(ProductModel productModel) {
+    final btnColor = const Color(0xFFfb8385);
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.all(30.0),
+          ),
+          RaisedButton(
+            elevation: 5.0,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0)),
+            child: Text('Approve'),
+            color: btnColor,
+            onPressed: () {
+              _postApproveStatus(productModel.product_id).then((data) {
+                if (data) {
+                  debugPrint('Product Approved');
+                  Navigator.of(context).pushNamed("/approved");
+                }
+              });
+            },
+          ),
+          Padding(
+            padding: EdgeInsets.all(30.0),
+          ),
+          RaisedButton(
+            elevation: 5.0,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0)),
+            child: Text('Deny'),
+            color: Colors.grey,
+            onPressed: () {
+              _postDenyStatus(productModel.product_id).then((data) {
+                if (data) {
+                  debugPrint('Product Denied');
+                  Navigator.of(context).pushNamed("/inactive");
+                }
+              });
+            },
+          ),
+          Padding(
+            padding: EdgeInsets.all(30.0),
+          ),
+        ],
+     // ),
+    );
+  }
+
+  Widget _getTitle() {
+    return
+        Text(
+          'Product Description',
+          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+          textAlign: TextAlign.left,  
+    );
+  }
+
+  Widget _getMoreDescription(String more_details) {
+    return Container(
+      padding: EdgeInsets.all(20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text('More Details', style: TextStyle(fontSize:18.0, fontWeight: FontWeight.bold)),
+          Text(
+            productModel.more_details,
+            textAlign: TextAlign.start,
+            style: TextStyle(fontSize: 18.0),
+          ),
+        ],
+      ),
+    );
   }
 }

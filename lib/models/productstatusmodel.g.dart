@@ -8,13 +8,13 @@ part of 'productstatusmodel.dart';
 
 ProductStatusModel _$ProductStatusModelFromJson(Map<String, dynamic> json) {
   return ProductStatusModel(
-    product_id: json['product_id'] as int,
+    productid: json['productid'] as int,
     status: json['status'] as int,
   );
 }
 
 Map<String, dynamic> _$ProductStatusModelToJson(ProductStatusModel instance) =>
     <String, dynamic>{
-      'product_id': instance.product_id,
+      'productid': instance.productid,
       'status': instance.status,
     };

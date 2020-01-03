@@ -28,12 +28,21 @@ class ProductsOtherState extends State<ProductsOther>{
         title: Wrap(children:<Widget>[Text(productModel.name)]),
         iconTheme: IconThemeData(color: iconColor),
       ),
-      body: Column(children: <Widget>[
-        _getImages(imageUrls),
+      body: ListView(
+        scrollDirection: Axis.vertical,
+        children: <Widget>[
+          _getImages(imageUrls),
         Padding(padding: EdgeInsets.only(bottom: 10.0),),
         _getDescription(productModel.description),
         _getMoreDescription(productModel.more_details),
-      ]),
+        ],
+        ),
+      // body: Column(children: <Widget>[
+      //   _getImages(imageUrls),
+      //   Padding(padding: EdgeInsets.only(bottom: 10.0),),
+      //   _getDescription(productModel.description),
+      //   _getMoreDescription(productModel.more_details),
+      // ]),
     );
     return app;
   }

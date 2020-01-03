@@ -1,9 +1,10 @@
+import 'dart:math';
+
 import 'package:app_drawer/models/usermodel.dart';
 import 'package:app_drawer/services/userrepo.dart';
 import 'package:flutter/material.dart';
-
+import 'package:app_drawer/utilis/constants.dart' as Constants;
 import 'drawer.dart';
-
 
 class User extends StatefulWidget {
   User({Key key}) : super(key: key);
@@ -13,7 +14,6 @@ class User extends StatefulWidget {
 }
 
 class _UserState extends State<User> {
-
   List<UserModel> userModels = List<UserModel>();
 
   @override
@@ -27,13 +27,12 @@ class _UserState extends State<User> {
   Future<void> userGet() async {
     userModels = await UserService().getAllUsers();
   }
- 
+
   @override
   Widget build(BuildContext context) {
-
-    Color mainColor = Theme.of(context).accentColor;
-    Color secColor = Colors.white;
-    Color textColor = Colors.black;
+    Color mainColor = Constants.mainColor;
+    Color secColor = Constants.secTextColor;
+    Color textColor = Constants.textColor;
 
     var app = Scaffold(
       resizeToAvoidBottomPadding: false,
@@ -56,27 +55,40 @@ class _UserState extends State<User> {
         itemCount: userModels.length == null ? 0 : userModels.length,
         itemBuilder: (BuildContext context, int index) {
           UserModel userModel = userModels[index];
+          String fullName = userModel.first_name + ' ' + userModel.last_name;
           String role;
-          if (userModel.role_id == 1){
+          if (userModel.role_id == 1) {
             role = "Admin";
-          }
-          else{
+          } else {
             role = "User";
           }
-          return Card(
-            margin: EdgeInsets.all(10.0),
-              child: ListTile(
-                leading: CircleAvatar(
-                    radius: 50.0,
-                    child: Icon(Icons.person)
-                    ),
-                title: Text(userModel.first_name + ' ' + userModel.last_name),
-                subtitle: Text(role),
-              ),
+          return ListTile(
+            leading: CircleAvatar(
+                backgroundColor:
+                    Colors.accents[Random().nextInt(Colors.accents.length)],
+                radius: 50.0,
+                // child: Icon(Icons.person)
+                child: Text(getTitle(userModel.first_name))),
+            title: Text(fullName),
+            subtitle: Text(role),
           );
+          // return Card(
+          //   margin: EdgeInsets.all(10.0),
+          //   child: ListTile(
+          //     leading: CircleAvatar(
+          //         backgroundColor: Colors.accents[Random().nextInt(Colors.accents.length)] ,
+          //         radius: 50.0,
+          //         // child: Icon(Icons.person)
+          //         child: Text(getTitle(userModel.first_name))),
+          //     title: Text(fullName),
+          //     subtitle: Text(role),
+          //   ),
+          // );
         });
     return app;
   }
 
-    
+  String getTitle(String first_name) {
+    return first_name.substring(0, 1);
+  }
 }

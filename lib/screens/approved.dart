@@ -1,13 +1,13 @@
 import 'package:app_drawer/models/productmodel.dart';
 import 'package:app_drawer/screens/drawer.dart';
-import 'package:app_drawer/screens/product.dart';
+//import 'package:app_drawer/screens/product.dart';
 import 'package:app_drawer/screens/productsother.dart';
 import 'package:app_drawer/services/productrepo.dart';
-import 'package:app_drawer/utilis/trimName.dart';
+//import 'package:app_drawer/utilis/trimName.dart';
 import 'package:app_drawer/widgets/utilwidgets.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:app_drawer/utilis/constants.dart' as Constants;
 
 class ApprovedProducts extends StatefulWidget {
   @override
@@ -32,13 +32,15 @@ class _ApprovedProductsState extends State<ApprovedProducts> {
   @override
   Widget build(BuildContext context) {
     Color iconColor = Theme.of(context).accentColor;
+    Color textColor = Constants.textColor;
+
     var app = Scaffold(
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         iconTheme: IconThemeData(color: iconColor),
         title: Text(
           'Approved Products',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: textColor),
         ),
       ),
       drawer: MyDrawer(),
@@ -63,21 +65,20 @@ class _ApprovedProductsState extends State<ApprovedProducts> {
             name = trimProductName(name);
           }
           List<dynamic> imageUrls = List<dynamic>();
-          productModel.image.forEach((i){
+          productModel.image.forEach((i) {
             imageUrls.add(NetworkImage(i.url));
           });
-          
+
           return Padding(
             padding: EdgeInsets.all(5.0),
             child: InkWell(
               onTap: () {
-               Navigator.push(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => ProductsOther(productModel),
                   ),
                 );
-               
               },
               child: Card(
                 elevation: 8.0,
@@ -96,12 +97,17 @@ class _ApprovedProductsState extends State<ApprovedProducts> {
                         ],
                       ),
                     ),
-                    child: Carousel(images: imageUrls, autoplay: false, dotSize: 1,)
+                    child: Carousel(
+                      images: imageUrls,
+                      autoplay: false,
+                      dotSize: 1,
+                    )
                     /*FadeInImage.memoryNetwork(
                       placeholder: kTransparentImage,
                       image: productModel.image.first.url,
                       fit: BoxFit.fitHeight,
-                    )*/,
+                    )*/
+                    ,
                     // child: Image.asset(
                     //   'images/admin.png',
                     //   fit: BoxFit.contain,

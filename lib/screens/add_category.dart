@@ -1,8 +1,10 @@
 //import 'package:app_drawer/screens/drawer.dart';
 //import 'package:app_drawer/services/authrepo.dart';
 import 'package:app_drawer/models/categorymodel.dart';
+import 'package:app_drawer/screens/add_sub.dart';
 import 'package:app_drawer/services/categoryrepo.dart';
 import 'package:flutter/material.dart';
+import 'package:app_drawer/utilis/constants.dart' as Constants;
 
 class AddCategory extends StatefulWidget {
   @override
@@ -13,12 +15,12 @@ class AddCategory extends StatefulWidget {
 
 class AddCategoryState extends State<AddCategory> {
   TextEditingController titleController = TextEditingController();
-  TextEditingController descController = TextEditingController();
-
-  final mainColor = const Color(0xFFFB777A);
-  final secColor = const Color(0xFFFFFFFF);
-  final textColor = const Color(0xFF000000);
-  final btnColor = const Color(0xFFfb8385);
+  TextEditingController descController = TextEditingController(); 
+  
+  Color mainColor = Constants.mainColor;
+  Color secColor = Constants.secTextColor;
+  Color textColor = Constants.textColor;
+  Color btnColor = Constants.btnColor;
 
   @override
   Widget build(BuildContext context) {

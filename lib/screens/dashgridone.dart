@@ -1,6 +1,7 @@
 import 'package:app_drawer/models/dashboardmodel.dart';
 import 'package:app_drawer/services/dashboardrepo.dart';
 import 'package:flutter/material.dart';
+import 'package:app_drawer/utilis/constants.dart' as Constants;
 
 class Gridone extends StatefulWidget {
   //Gridone({Key key}) : super(key: key);
@@ -9,10 +10,12 @@ class Gridone extends StatefulWidget {
 }
 
 class _GridoneState extends State<Gridone> {
-  final color1 = const Color(0xFFFFBF37);
-  final color2 = const Color(0xFF00CECE);
-  final color3 = const Color(0xFFFB777A);
-  final color4 = const Color(0xFFA5A5A5);
+  
+  Color secColor = Constants.secTextColor;
+  Color card1 = Constants.card1;
+  Color card2 = Constants.card2;
+  Color card3 = Constants.card3;
+  Color card4 = Constants.card4;
 
   DashboardModel dashboardModel = DashboardModel();
 
@@ -44,20 +47,20 @@ class _GridoneState extends State<Gridone> {
           child: Align(
             alignment: Alignment.center,
             child: ListTile(
-              leading: Icon(Icons.shopping_cart, size: 50.0, color: Colors.white),
+              leading: Icon(Icons.shopping_cart, size: 50.0, color: secColor),
               title: Text(
                 'Total of Product Amount',
-                style: TextStyle(color: Colors.white, fontSize: 30.0),
+                style: TextStyle(color: secColor, fontSize: 30.0),
                 textAlign: TextAlign.center,
               ),
               subtitle: Text(
                 '€' + dashboardModel.totalProductAmount.toString(),
-                style: TextStyle(color: Colors.white, fontSize: 30.0),
+                style: TextStyle(color: secColor, fontSize: 30.0),
                 textAlign: TextAlign.center,
               ),
             ),
           ),
-          color: color1,
+          color: card1,
         ),
         //Card 2
         Card(
@@ -67,20 +70,20 @@ class _GridoneState extends State<Gridone> {
           child: Align(
             alignment: Alignment.center,
             child: ListTile(
-              leading: Icon(Icons.devices, size: 50.0, color: Colors.white),
+              leading: Icon(Icons.devices, size: 50.0, color: secColor),
               title: Text(
                 'Total of Sold Product Amount',
-                style: TextStyle(color: Colors.white, fontSize: 30.0),
+                style: TextStyle(color: secColor, fontSize: 30.0),
                 textAlign: TextAlign.center,
               ),
               subtitle: Text(
                 '€' + dashboardModel.totalSoldProductAmount.toString(),
-                style: TextStyle(color: Colors.white, fontSize: 30.0),
+                style: TextStyle(color: secColor, fontSize: 30.0),
                 textAlign: TextAlign.center,
               ),
             ),
           ),
-          color: color2,
+          color: card2,
         ),
         //Card 3
         Card(
@@ -91,20 +94,20 @@ class _GridoneState extends State<Gridone> {
           child: Align(
             alignment: Alignment.center,
             child: ListTile(
-              leading: Icon(Icons.chat_bubble, size: 50.0, color: Colors.white),
+              leading: Icon(Icons.chat_bubble, size: 50.0, color: secColor),
               title: Text(
                 'Total Messages',
-                style: TextStyle(color: Colors.white, fontSize: 30.0),
+                style: TextStyle(color: secColor, fontSize: 30.0),
                 textAlign: TextAlign.center,
               ),
               subtitle: Text(
                 dashboardModel.totalMessage.toString(),
-                style: TextStyle(color: Colors.white, fontSize: 30.0),
+                style: TextStyle(color: secColor, fontSize: 30.0),
                 textAlign: TextAlign.center,
               ),
             ),
           ),
-          color: color3,
+          color: card3,
         ),
         //Card 4
         Card(
@@ -114,20 +117,20 @@ class _GridoneState extends State<Gridone> {
           child: Align(
             alignment: Alignment.center,
             child: ListTile(
-              leading: Icon(Icons.people, size: 50.0, color: Colors.white),
+              leading: Icon(Icons.people, size: 50.0, color: secColor),
               title: Text(
                 'Total Users',
-                style: TextStyle(color: Colors.white, fontSize: 30.0),
+                style: TextStyle(color: secColor, fontSize: 30.0),
                 textAlign: TextAlign.center,
               ),
               subtitle: Text(
                 dashboardModel.totalUser.toString(),
-                style: TextStyle(color: Colors.white, fontSize: 30.0),
+                style: TextStyle(color: secColor, fontSize: 30.0),
                 textAlign: TextAlign.center,
               ),
             ),
           ),
-          color: color4,
+          color: card4,
         ),
         
       ],

@@ -1,6 +1,7 @@
 import 'package:app_drawer/models/authmodel.dart';
 import 'package:app_drawer/services/authrepo.dart';
 import 'package:flutter/material.dart';
+import 'package:app_drawer/utilis/constants.dart' as Constants;
 
 class Login extends StatefulWidget {
   @override
@@ -10,10 +11,10 @@ class Login extends StatefulWidget {
 }
 
 class LoginState extends State<Login> {
-  final mainColor = const Color(0xFFFB777A);
-  final secColor = const Color(0xFFFFFFFF);
-  final textColor = const Color(0xFF000000);
-  final btnColor = const Color(0xFFfb8385);
+  Color mainColor = Constants.mainColor;
+  Color secColor = Constants.secTextColor;
+  Color textColor = Constants.textColor;
+  Color btnColor = Constants.btnColor;
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 

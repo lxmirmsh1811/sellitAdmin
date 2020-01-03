@@ -3,6 +3,7 @@ import 'package:app_drawer/screens/drawer.dart';
 import 'package:app_drawer/screens/subcategory.dart';
 import 'package:app_drawer/services/categoryrepo.dart';
 import 'package:flutter/material.dart';
+import 'package:app_drawer/utilis/constants.dart' as Constants;
 
 class Category extends StatefulWidget {
   @override
@@ -26,10 +27,10 @@ class CategoryState extends State<Category> {
     categoryModel = await CategoryService().getAllCategoryData();
   }
 
-  final mainColor = const Color(0xFFFB777A);
-  final secColor = const Color(0xFFFFFFFF);
-  final textColor = const Color(0xFF000000);
-  final btnColor = const Color(0xFFfb8385);
+  Color mainColor = Constants.mainColor;
+  Color secColor = Constants.secTextColor;
+  Color textColor = Constants.textColor;
+  Color btnColor = Constants.btnColor;
   @override
   Widget build(BuildContext context) {
     var app = Scaffold(
@@ -43,10 +44,12 @@ class CategoryState extends State<Category> {
         backgroundColor: secColor,
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add, color: Colors.white, size: 30.0),
+        child: Icon(Icons.add, color: secColor, size: 30.0),
         onPressed: () {
           Navigator.of(context).pushNamed('/addCat');
         },
+        tooltip: 'Add new Category',
+        
       ),
       drawer: MyDrawer(),
       body: getCategoryList(),
@@ -65,8 +68,6 @@ class CategoryState extends State<Category> {
                 debugPrint(categoryModel[index].sub_category.length.toString());
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return SubCategory(subcategoryModel:categoryModel[index].sub_category, categoryid: categoryModel[index].category_id,);
-                  //return SubCategory(
-                  //    categoryModel: categoryModel);
                 }));
               },
               child: ListTile(

@@ -4,6 +4,7 @@ import 'package:app_drawer/models/authmodel.dart';
 import 'package:app_drawer/models/authresponsemodel.dart';
 import 'package:app_drawer/services/authrepo.dart';
 import 'package:flutter/material.dart';
+import 'package:app_drawer/utilis/constants.dart' as Constants;
 
 class MyDrawer extends StatefulWidget{
   @override
@@ -19,9 +20,9 @@ class MyDrawerState extends State<MyDrawer>{
   MyDrawerState();
   MyDrawerState.username(this.username);
   
-  final mainColor = const Color(0xFFFB777A);
-  final secColor = const Color(0xFFFFFFFF);
-  final textColor = const Color(0xFF000000);
+  Color mainColor = Constants.mainColor;
+  Color secColor = Constants.secTextColor;
+  Color textColor = Constants.textColor;
   @override
   Widget build(BuildContext context) {
     return Drawer(

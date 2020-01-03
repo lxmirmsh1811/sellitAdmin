@@ -2,22 +2,19 @@ import 'package:app_drawer/screens/add_category.dart';
 import 'package:app_drawer/screens/add_sub.dart';
 import 'package:app_drawer/screens/approved.dart';
 import 'package:app_drawer/screens/category.dart';
-import 'package:app_drawer/screens/dashboard.dart';
-//import 'package:app_drawer/screens/dashboard.dart';
 import 'package:app_drawer/screens/home_screen.dart';
 import 'package:app_drawer/screens/invalid.dart';
 import 'package:app_drawer/screens/pending.dart';
-import 'package:app_drawer/screens/product.dart';
 import 'package:app_drawer/screens/sold.dart';
-import 'package:app_drawer/screens/subcategory.dart';
+import 'package:app_drawer/utilis/constants.dart' as Constants;
 import 'package:app_drawer/screens/users.dart';
 import 'package:flutter/material.dart';
 import 'package:app_drawer/screens/login.dart';
 
 void main(){
-  final mainColor = const Color(0xFFFB777A);
-  final secColor = const Color(0xFFFFFFFF);
-  final textColor = const Color(0xFF000000);
+  Color mainColor = Constants.mainColor;
+  Color secColor = Constants.secTextColor;
+  Color textColor = Constants.textColor;
   var app = MaterialApp(
     debugShowCheckedModeBanner: false,
     title: 'Drawer App',

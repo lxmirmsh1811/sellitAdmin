@@ -3,6 +3,8 @@ import 'package:app_drawer/models/productstatusmodel.dart';
 import 'package:app_drawer/services/productrepo.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:app_drawer/utilis/constants.dart' as Constants;
 
 class Product extends StatefulWidget {
   ProductModel productModel = ProductModel();
@@ -33,13 +35,23 @@ class ProductState extends State<Product> {
         title: Wrap(children: <Widget>[Text(productModel.name)]),
         iconTheme: IconThemeData(color: iconColor),
       ),
-      body: Column(children: <Widget>[
-        _getImages(imageUrls),
+      body: ListView(
+       scrollDirection: Axis.vertical,
+        children: <Widget>[
+          _getImages(imageUrls),
         Padding(padding: EdgeInsets.only(bottom: 10.0),),
         _getDescription(productModel.description),
         _getMoreDescription(productModel.more_details),
         _getButtonFunc(productModel)
-      ]),
+        ],
+      )
+      // body: Column(children: <Widget>[
+      //   _getImages(imageUrls),
+      //   Padding(padding: EdgeInsets.only(bottom: 10.0),),
+      //   _getDescription(productModel.description),
+      //   _getMoreDescription(productModel.more_details),
+      //   _getButtonFunc(productModel)
+      // ]),
     );
     return app;
   }
@@ -87,7 +99,7 @@ class ProductState extends State<Product> {
   }
 
   Widget _getButtonFunc(ProductModel productModel) {
-    final btnColor = const Color(0xFFfb8385);
+    Color btnColor = Constants.btnColor;
     return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[

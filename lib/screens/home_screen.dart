@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:app_drawer/screens/dashboard.dart';
 import 'package:app_drawer/screens/drawer.dart';
+import 'package:app_drawer/utilis/constants.dart' as Constants;
 
 class HomeScreen extends StatefulWidget{
   @override
@@ -28,9 +29,9 @@ class HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMi
 
   HomeScreenState({this.tabController});
 
-  final mainColor = const Color(0xFFFB777A);
-  final secColor = const Color(0xFFFFFFFF);
-  final textColor = const Color(0xFF000000);
+  Color mainColor = Constants.mainColor;
+  Color secColor = Constants.secTextColor;
+  Color textColor = Constants.textColor;
   @override
   Widget build(BuildContext context) {
     var app = Scaffold(

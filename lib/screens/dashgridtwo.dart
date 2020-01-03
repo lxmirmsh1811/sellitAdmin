@@ -1,6 +1,7 @@
 import 'package:app_drawer/models/dashboardmodel.dart';
 import 'package:app_drawer/services/dashboardrepo.dart';
 import 'package:flutter/material.dart';
+import 'package:app_drawer/utilis/constants.dart' as Constants;
 
 class Gridtwo extends StatefulWidget {
   //Gridone({Key key}) : super(key: key);
@@ -10,10 +11,11 @@ class Gridtwo extends StatefulWidget {
 
 class _GridtwoState extends State<Gridtwo> {
 
-  final color1 = const Color(0xFFFFBF37);
-  final color2 = const Color(0xFF00CECE);
-  final color3 = const Color(0xFFFB777A);
-  final color4 = const Color(0xFFA5A5A5);
+  Color textColor = Constants.textColor;
+  Color card1 = Constants.card1;
+  Color card2 = Constants.card2;
+  Color card3 = Constants.card3;
+  Color card4 = Constants.card4;
 
   DashboardModel dashboardModel = DashboardModel();
 
@@ -45,15 +47,15 @@ class _GridtwoState extends State<Gridtwo> {
           child: Align(
             alignment: Alignment.center,
             child: ListTile(
-              leading: Icon(Icons.add_shopping_cart, size: 50.0, color: color1),
+              leading: Icon(Icons.add_shopping_cart, size: 50.0, color: card1),
               title: Text(
                 'Total Product Count',
-                style: TextStyle(color: Colors.black, fontSize: 30.0),
+                style: TextStyle(color: textColor, fontSize: 30.0),
                 textAlign: TextAlign.center,
               ),
               subtitle: Text(
                 dashboardModel.totalProduct.toString(),
-                style: TextStyle(color: Colors.black, fontSize: 30.0),
+                style: TextStyle(color: textColor, fontSize: 30.0),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -67,15 +69,15 @@ class _GridtwoState extends State<Gridtwo> {
           child: Align(
             alignment: Alignment.center,
             child: ListTile(
-              leading: Icon(Icons.devices, size: 50.0, color: color2),
+              leading: Icon(Icons.devices, size: 50.0, color: card2),
               title: Text(
                 'Total Sold Product Count',
-                style: TextStyle(color: Colors.black, fontSize: 30.0),
+                style: TextStyle(color: textColor, fontSize: 30.0),
                 textAlign: TextAlign.center,
               ),
               subtitle: Text(
                 dashboardModel.totalSoldProduct.toString(),
-                style: TextStyle(color: Colors.black, fontSize: 30.0),
+                style: TextStyle(color: textColor, fontSize: 30.0),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -89,15 +91,15 @@ class _GridtwoState extends State<Gridtwo> {
           child: Align(
             alignment: Alignment.center,
             child: ListTile(
-              leading: Icon(Icons.check_circle, size: 50.0, color: color3),
+              leading: Icon(Icons.check_circle, size: 50.0, color: card3),
               title: Text(
                 'Total Approved Products',
-                style: TextStyle(color: Colors.black, fontSize: 30.0),
+                style: TextStyle(color: textColor, fontSize: 30.0),
                 textAlign: TextAlign.center,
               ),
               subtitle: Text(
                 dashboardModel.totalApprovedProduct.toString(),
-                style: TextStyle(color: Colors.black, fontSize: 30.0),
+                style: TextStyle(color: textColor, fontSize: 30.0),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -111,15 +113,15 @@ class _GridtwoState extends State<Gridtwo> {
           child: Align(
             alignment: Alignment.center,
             child: ListTile(
-              leading: Icon(Icons.warning, size: 50.0, color: color4),
+              leading: Icon(Icons.warning, size: 50.0, color: card4),
               title: Text(
                 'Total Pending Products',
-                style: TextStyle(color: Colors.black, fontSize: 30.0),
+                style: TextStyle(color: textColor, fontSize: 30.0),
                 textAlign: TextAlign.center,
               ),
               subtitle: Text(
                 dashboardModel.totalPendingProduct.toString(),
-                style: TextStyle(color: Colors.black, fontSize: 30.0),
+                style: TextStyle(color: textColor, fontSize: 30.0),
                 textAlign: TextAlign.center,
               ),
             ),

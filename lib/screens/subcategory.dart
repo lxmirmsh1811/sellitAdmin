@@ -1,6 +1,7 @@
 import 'package:app_drawer/models/categorymodel.dart';
 import 'package:app_drawer/screens/add_sub.dart';
 import 'package:flutter/material.dart';
+import 'package:app_drawer/utilis/constants.dart' as Constants;
 
 class SubCategory extends StatefulWidget{
   final List<CategoryModel> subcategoryModel; 
@@ -22,10 +23,10 @@ class SubCategoryState extends State<SubCategory>{
     super.initState();
   }
 
-  final mainColor = const Color(0xFFFB777A);
-  final secColor = const Color(0xFFFFFFFF);
-  final textColor = const Color(0xFF000000);
-  final btnColor = const Color(0xFFfb8385);
+  Color mainColor = Constants.mainColor;
+  Color secColor = Constants.secTextColor;
+  Color textColor = Constants.textColor;
+  Color btnColor = Constants.btnColor;
   @override
   Widget build(BuildContext context) {
     var app = Scaffold(
@@ -37,6 +38,7 @@ class SubCategoryState extends State<SubCategory>{
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add, color: Colors.white,size: 30.0),
+        tooltip: 'Add new SubCategory',
         onPressed: (){
           debugPrint(widget.categoryid.toString());
           //Navigator.of(context).pushNamed('/addSubCat');

@@ -1,7 +1,9 @@
 //import 'package:app_drawer/screens/drawer.dart';
 import 'package:app_drawer/models/categorymodel.dart';
+//import 'package:app_drawer/screens/subcategory.dart';
 import 'package:app_drawer/services/categoryrepo.dart';
 import 'package:flutter/material.dart';
+import 'package:app_drawer/utilis/constants.dart' as Constants;
 
 class AddSubCategory extends StatefulWidget{
   final int parentid;
@@ -13,10 +15,11 @@ class AddSubCategory extends StatefulWidget{
 }
 
 class AddSubCategoryState extends State<AddSubCategory>{
-  final mainColor = const Color(0xFFFB777A);
-  final secColor = const Color(0xFFFFFFFF);
-  final textColor = const Color(0xFF000000);
-  final btnColor = const Color(0xFFfb8385);
+
+  Color mainColor = Constants.mainColor;
+  Color secColor = Constants.secTextColor;
+  Color textColor = Constants.textColor;
+  Color btnColor = Constants.btnColor;
 
   TextEditingController titleController = TextEditingController();
   TextEditingController descController = TextEditingController();
@@ -135,6 +138,7 @@ class AddSubCategoryState extends State<AddSubCategory>{
      onPressed: () {
         debugPrint('Close Category Pressed');
         Navigator.of(context).pushNamed("/category");
+        //Navigator.of(context).pushNamed("/subCategory");
       }
     )
       )

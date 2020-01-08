@@ -1,47 +1,57 @@
-//import 'package:app_drawer/services/authrepo.dart';
-//import 'package:app_drawer/services/authrepo.dart';
-import 'package:app_drawer/models/authmodel.dart';
-import 'package:app_drawer/models/authresponsemodel.dart';
-import 'package:app_drawer/services/authrepo.dart';
+import 'package:app_drawer/screens/login.dart';
+import 'package:app_drawer/screens/users.dart';
 import 'package:flutter/material.dart';
 import 'package:app_drawer/utilis/constants.dart' as Constants;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class MyDrawer extends StatefulWidget{
+class MyDrawer extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return MyDrawerState();
   }
-
 }
 
-class MyDrawerState extends State<MyDrawer>{
-
-  String username;
-  MyDrawerState();
-  MyDrawerState.username(this.username);
+class MyDrawerState extends State<MyDrawer> {
+  LoginState loginState = LoginState();
+  String value;
   
+
+  @override
+  void initState() {
+    readCreds().then((data){
+      setState(() {
+      });
+    });
+    super.initState();
+  }
+
+  Future<String> readCreds() async {
+    value = await loginState.storage.read(key: "token1");
+    return value;
+  }
+
+  
+
   Color mainColor = Constants.mainColor;
   Color secColor = Constants.secTextColor;
   Color textColor = Constants.textColor;
   @override
   Widget build(BuildContext context) {
     return Drawer(
-        
-        child: ListView(
-          children: <Widget>[
-            _drawerHeader(),
-            _dashboard(context),
-            _products(),
-            _categories(context),
-            _users(),
-            _logout(context),
-          ],
-        ),
-      );
+      child: ListView(
+        children: <Widget>[
+          _drawerHeader(),
+          _dashboard(context),
+          _products(),
+          _categories(context),
+          _users(),
+          _logout(context),
+        ],
+      ),
+    );
   }
 
-  Widget _drawerHeader(){
-    
+  Widget _drawerHeader() {
     var app = DrawerHeader(
       decoration: BoxDecoration(
         color: secColor,
@@ -53,11 +63,22 @@ class MyDrawerState extends State<MyDrawer>{
               borderRadius: BorderRadius.all(Radius.circular(50.0)),
               child: Padding(
                 padding: EdgeInsets.all(8.0),
-                child: Image.asset('images/admin.png', width:80.0, height: 80.0),
+                child:
+                    Image.asset('images/admin.png', width: 80.0, height: 80.0),
               ),
             ),
-            Text('Admin',style: TextStyle(color: textColor, fontSize: 12.0, fontWeight: FontWeight.bold),),
-            Text('Admin',style: TextStyle(color: mainColor, fontSize: 10.0),)
+            Text(
+         //     value,
+              'Admin',
+              style: TextStyle(
+                  color: textColor,
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text(
+              'Admin',
+              style: TextStyle(color: mainColor, fontSize: 10.0),
+            )
           ],
         ),
       ),
@@ -65,12 +86,11 @@ class MyDrawerState extends State<MyDrawer>{
     return app;
   }
 
-  Widget _dashboard(BuildContext context){
-
+  Widget _dashboard(BuildContext context) {
     var app = ListTile(
       leading: Icon(Icons.home),
       title: Text('Dashboard'),
-      onTap: (){
+      onTap: () {
         Navigator.popAndPushNamed(context, '/home');
       },
     );
@@ -78,12 +98,11 @@ class MyDrawerState extends State<MyDrawer>{
     return app;
   }
 
-  Widget _logout(BuildContext context){
-
+  Widget _logout(BuildContext context) {
     var app = ListTile(
       leading: Icon(Icons.home),
       title: Text('Logout'),
-      onTap: (){
+      onTap: () {
         Navigator.popAndPushNamed(context, '/logout');
       },
     );
@@ -91,54 +110,54 @@ class MyDrawerState extends State<MyDrawer>{
     return app;
   }
 
-  Widget _categories(BuildContext context){
+  Widget _categories(BuildContext context) {
     var app = ListTile(
       leading: Icon(Icons.category),
       title: Text('Categories'),
-      onTap: (){
+      onTap: () {
         Navigator.popAndPushNamed(context, '/category');
-        },
+      },
     );
     return app;
   }
 
-  Widget _users(){
+  Widget _users() {
     var app = ListTile(
       leading: Icon(Icons.people),
       title: Text('Users'),
-      onTap: (){
+      onTap: () {
         Navigator.popAndPushNamed(context, '/users');
       },
     );
     return app;
   }
 
-  Widget _products(){
+  Widget _products() {
     var app = ExpansionTile(
       leading: Icon(Icons.devices_other),
       title: Text('Products'),
       children: <Widget>[
         ListTile(
           title: Text('   Pending Products'),
-          onTap: (){
+          onTap: () {
             Navigator.popAndPushNamed(context, '/pending');
           },
         ),
         ListTile(
           title: Text('   Approved Products'),
-          onTap: (){
+          onTap: () {
             Navigator.popAndPushNamed(context, '/approved');
           },
         ),
         ListTile(
           title: Text('   Sold Products'),
-          onTap: (){
+          onTap: () {
             Navigator.popAndPushNamed(context, '/sold');
           },
         ),
         ListTile(
           title: Text('   Inactive Products'),
-          onTap: (){
+          onTap: () {
             Navigator.popAndPushNamed(context, '/inactive');
           },
         ),

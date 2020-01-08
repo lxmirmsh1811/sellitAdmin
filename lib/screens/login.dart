@@ -2,6 +2,7 @@ import 'package:app_drawer/models/authmodel.dart';
 import 'package:app_drawer/services/authrepo.dart';
 import 'package:flutter/material.dart';
 import 'package:app_drawer/utilis/constants.dart' as Constants;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -17,6 +18,7 @@ class LoginState extends State<Login> {
   Color btnColor = Constants.btnColor;
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final storage = new FlutterSecureStorage();
 
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -31,7 +33,9 @@ class LoginState extends State<Login> {
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Container(padding: EdgeInsets.only(top: 50.0),),
+            Container(
+              padding: EdgeInsets.only(top: 50.0),
+            ),
             InkWell(
               onTap: () {
                 setState(() {});
@@ -114,6 +118,7 @@ class LoginState extends State<Login> {
             checkUser(usernameController.text, passwordController.text)
                 .then((data) {
               if (data == true) {
+                _addCreds(usernameController.text);
                 Navigator.of(context).pushNamed("/home");
               }
             });
@@ -127,5 +132,9 @@ class LoginState extends State<Login> {
     AuthModel input = AuthModel(matrikel_number: username, password: password);
     bool result = await AuthServices().authUser(input);
     return result;
+  }
+
+  Future<void> _addCreds(String username) async {
+    await storage.write(key: "token1" , value: username);
   }
 }

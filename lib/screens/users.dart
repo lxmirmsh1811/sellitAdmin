@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:app_drawer/models/usermodel.dart';
+import 'package:app_drawer/screens/login.dart';
 import 'package:app_drawer/services/userrepo.dart';
 import 'package:flutter/material.dart';
 import 'package:app_drawer/utilis/constants.dart' as Constants;
@@ -10,10 +11,10 @@ class User extends StatefulWidget {
   User({Key key}) : super(key: key);
 
   @override
-  _UserState createState() => _UserState();
+  UserState createState() => UserState();
 }
 
-class _UserState extends State<User> {
+class UserState extends State<User> {
   List<UserModel> userModels = List<UserModel>();
 
   @override
@@ -66,9 +67,9 @@ class _UserState extends State<User> {
             leading: CircleAvatar(
                 backgroundColor:
                     Colors.accents[Random().nextInt(Colors.accents.length)],
-                radius: 50.0,
+                radius: 25.0,
                 // child: Icon(Icons.person)
-                child: Text(getTitle(userModel.first_name))),
+                child: Text(getTitle(userModel.first_name),style: TextStyle(fontSize: 13.0, fontWeight: FontWeight.bold),),),
             title: Text(fullName),
             subtitle: Text(role),
           );

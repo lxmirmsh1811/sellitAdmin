@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:app_drawer/models/categorymodel.dart';
 import 'package:app_drawer/screens/add_sub.dart';
 import 'package:flutter/material.dart';
@@ -62,8 +64,9 @@ class SubCategoryState extends State<SubCategory>{
           margin: EdgeInsets.all(10.0),
           child: ListTile(
             leading: CircleAvatar(
+              backgroundColor: Constants.btnColor,
               radius: 50.0,
-              child: Text(getTitle(subcategoryModel[index].name))
+              child: Text(getTitle(subcategoryModel[index].name), style: TextStyle(color: Colors.white),)
             ),
             title: Text(subcategoryModel[index].name),
             subtitle: Text(subcategoryModel[index].description),

@@ -5,7 +5,6 @@ import 'package:app_drawer/services/productrepo.dart';
 import 'package:app_drawer/widgets/utilwidgets.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class PendingProducts extends StatefulWidget {
   @override

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:app_drawer/models/categorymodel.dart';
 import 'package:app_drawer/screens/drawer.dart';
 import 'package:app_drawer/screens/subcategory.dart';
@@ -72,8 +74,9 @@ class CategoryState extends State<Category> {
               },
               child: ListTile(
                 leading: CircleAvatar(
+                    backgroundColor: Constants.btnColor,
                     radius: 50.0,
-                    child: Text(getTitle(categoryModel[index].name))),
+                    child: Text(getTitle(categoryModel[index].name), style: TextStyle(color: Colors.white))),
                 title: Text(categoryModel[index].name),
                 subtitle: Text(categoryModel[index].description),
                 trailing: Icon(Icons.arrow_forward_ios),

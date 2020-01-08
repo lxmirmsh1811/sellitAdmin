@@ -116,7 +116,8 @@ class ProductState extends State<Product> {
               _postApproveStatus(productModel.product_id).then((data) {
                 if (data) {
                   debugPrint('Product Approved');
-                  Navigator.of(context).pushNamed("/approved");
+                  _showApproveDialog(productModel.name);
+                  //Navigator.of(context).pushNamed("/approved");
                 }
               });
             },
@@ -134,7 +135,8 @@ class ProductState extends State<Product> {
               _postDenyStatus(productModel.product_id).then((data) {
                 if (data) {
                   debugPrint('Product Denied');
-                  Navigator.of(context).pushNamed("/inactive");
+                  _showDenyDialog(productModel.name);
+                 // Navigator.of(context).pushNamed("/inactive");
                 }
               });
             },
@@ -170,6 +172,45 @@ class ProductState extends State<Product> {
           ),
         ],
       ),
+    );
+  }
+  void _showApproveDialog(String name){
+      showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: Text('Product status'),
+          content: Text('Product \'$name\' has been Approved'),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Ok'),
+              onPressed: (){
+                Navigator.of(context).pushNamed("/approved");
+              },
+              )
+          ],
+        );
+      }
+    );
+  }
+
+  void _showDenyDialog(String name){
+      showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: Text('Product status'),
+          content: Text('Product \'$name\' has been Denied'),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Ok'),
+              onPressed: (){
+                 Navigator.of(context).pushNamed("/inactive");
+              },
+              )
+          ],
+        );
+      }
     );
   }
 }

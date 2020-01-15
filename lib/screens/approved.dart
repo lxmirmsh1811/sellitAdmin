@@ -123,7 +123,7 @@ class _ApprovedProductsState extends State<ApprovedProducts> {
   }
 
   String trimProductName(String title) {
-    var result = title.substring(0, 18).toUpperCase() + '...';
+    var result = title.substring(0, 16).toUpperCase() + '...';
     return result;
   }
 }

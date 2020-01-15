@@ -67,9 +67,9 @@ class UserState extends State<User> {
             leading: CircleAvatar(
                 backgroundColor:
                     Colors.accents[Random().nextInt(Colors.accents.length)],
-                radius: 25.0,
+                radius: 22.0,
                 // child: Icon(Icons.person)
-                child: Text(getTitle(userModel.first_name),style: TextStyle(fontSize: 13.0, fontWeight: FontWeight.bold),),),
+                child: Text(_getTitle(userModel.first_name),style: TextStyle(fontSize: 13.0, fontWeight: FontWeight.bold),),),
             title: Text(fullName),
             subtitle: Text(role),
           );
@@ -89,7 +89,7 @@ class UserState extends State<User> {
     return app;
   }
 
-  String getTitle(String first_name) {
+  String _getTitle(String first_name) {
     return first_name.substring(0, 1);
   }
 }

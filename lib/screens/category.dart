@@ -75,7 +75,7 @@ class CategoryState extends State<Category> {
               child: ListTile(
                 leading: CircleAvatar(
                     backgroundColor: Constants.btnColor,
-                    radius: 50.0,
+                    radius: 22.0,
                     child: Text(getTitle(categoryModel[index].name), style: TextStyle(color: Colors.white))),
                 title: Text(categoryModel[index].name),
                 subtitle: Text(categoryModel[index].description),

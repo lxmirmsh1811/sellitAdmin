@@ -63,7 +63,8 @@ class CategoryState extends State<Category> {
     var app = ListView.builder(
         itemCount: categoryModel.length == null ? 0 : categoryModel.length,
         itemBuilder: (BuildContext context, int index) {
-          return Card(
+          return Container(
+            height: 70.0,
             margin: EdgeInsets.all(10.0),
             child: InkWell(
               onTap: () {
@@ -73,9 +74,10 @@ class CategoryState extends State<Category> {
                 }));
               },
               child: ListTile(
+                contentPadding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                 leading: CircleAvatar(
                     backgroundColor: Constants.btnColor,
-                    radius: 22.0,
+                    radius: 23.0,
                     child: Text(getTitle(categoryModel[index].name), style: TextStyle(color: Colors.white))),
                 title: Text(categoryModel[index].name),
                 subtitle: Text(categoryModel[index].description),

@@ -1,22 +1,15 @@
+import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/material.dart';
 import 'package:app_drawer/models/dashboardmodel.dart';
 import 'package:app_drawer/services/dashboardrepo.dart';
-import 'package:flutter/material.dart';
 import 'package:app_drawer/utilis/constants.dart' as Constants;
 
-class Gridone extends StatefulWidget {
-  //Gridone({Key key}) : super(key: key);
+class PieChartSample2 extends StatefulWidget {
   @override
-  _GridoneState createState() => _GridoneState();
+  State<StatefulWidget> createState() => PieChart2State();
 }
-
-class _GridoneState extends State<Gridone> {
-  
-  Color secColor = Constants.secTextColor;
-  Color card1 = Constants.card1;
-  Color card2 = Constants.card2;
-  Color card3 = Constants.card3;
-  Color card4 = Constants.card4;
-
+//Add Proper amounts and percentages for Pie Chart
+class PieChart2State extends State {
   DashboardModel dashboardModel = DashboardModel();
 
   @override
@@ -31,110 +24,151 @@ class _GridoneState extends State<Gridone> {
     dashboardModel = await DashboardService().getAllDashboardData();
   }
 
+  int touchedIndex;
+
   @override
   Widget build(BuildContext context) {
-    var app = Scaffold(
-      resizeToAvoidBottomPadding: false,
-      
-      body: GridView.count(
-      crossAxisCount: 1,
-      children: <Widget>[
-        //Card 1
-        Card(
-          margin: EdgeInsets.only(left: 40.0, top: 40.0, right: 40.0, bottom: 10.0),
-          elevation: 10.0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-          child: Align(
-            alignment: Alignment.center,
-            child: ListTile(
-              leading: Icon(Icons.shopping_cart, size: 50.0, color: secColor),
-              title: Text(
-                'Total of Product Amount',
-                style: TextStyle(color: secColor, fontSize: 30.0),
-                textAlign: TextAlign.center,
-              ),
-              subtitle: Text(
-                '€' + dashboardModel.totalProductAmount.toString(),
-                style: TextStyle(color: secColor, fontSize: 30.0),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-          color: card1,
-        ),
-        //Card 2
-        Card(
-          margin: EdgeInsets.only(left: 40.0, top: 40.0, right: 40.0, bottom: 10.0),
-          elevation: 10.0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-          child: Align(
-            alignment: Alignment.center,
-            child: ListTile(
-              leading: Icon(Icons.devices, size: 50.0, color: secColor),
-              title: Text(
-                'Total of Sold Product Amount',
-                style: TextStyle(color: secColor, fontSize: 30.0),
-                textAlign: TextAlign.center,
-              ),
-              subtitle: Text(
-                '€' + dashboardModel.totalSoldProductAmount.toString(),
-                style: TextStyle(color: secColor, fontSize: 30.0),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-          color: card2,
-        ),
-        //Card 3
-        Card(
+    var app = AspectRatio(
+      aspectRatio: 1.3,
+      child: ListView(
 
-          margin: EdgeInsets.only(left: 40.0, top: 40.0, right: 40.0, bottom: 10.0),
-          elevation: 10.0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-          child: Align(
-            alignment: Alignment.center,
-            child: ListTile(
-              leading: Icon(Icons.chat_bubble, size: 50.0, color: secColor),
-              title: Text(
-                'Total Messages',
-                style: TextStyle(color: secColor, fontSize: 30.0),
-                textAlign: TextAlign.center,
+        scrollDirection: Axis.vertical,
+        children: <Widget>[
+        Column(
+            children: <Widget>[
+              const SizedBox(
+                height: 18,
               ),
-              subtitle: Text(
-                dashboardModel.totalMessage.toString(),
-                style: TextStyle(color: secColor, fontSize: 30.0),
-                textAlign: TextAlign.center,
+              // Container(
+              //   padding: EdgeInsets.only(left: 20.0),
+              //   alignment: Alignment.centerLeft,
+              //   height: 20.0,
+              //   child: Text(
+              //     'General Status',
+              //     style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  
+                  
+              //     ),
+              // ),
+              Container(
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: PieChart(
+                    PieChartData(
+                        pieTouchData:
+                            PieTouchData(touchCallback: (pieTouchResponse) {
+                          setState(() {
+                            if (pieTouchResponse.touchInput is FlLongPressEnd ||
+                                pieTouchResponse.touchInput is FlPanEnd) {
+                              touchedIndex = -1;
+                            } else {
+                              touchedIndex = pieTouchResponse.touchedSectionIndex;
+                            }
+                          });
+                        }),
+                        borderData: FlBorderData(
+                          show: false,
+                        ),
+                        sectionsSpace: 0,
+                        centerSpaceRadius: 60,
+                        sections: showingSections()),
+                  ),
+                ),
               ),
-            ),
-          ),
-          color: card3,
-        ),
-        //Card 4
-        Card(
-          margin: EdgeInsets.only(left: 40.0, top: 40.0, right: 40.0, bottom: 10.0),
-          elevation: 10.0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-          child: Align(
-            alignment: Alignment.center,
-            child: ListTile(
-              leading: Icon(Icons.people, size: 50.0, color: secColor),
-              title: Text(
-                'Total Users',
-                style: TextStyle(color: secColor, fontSize: 30.0),
-                textAlign: TextAlign.center,
+              Padding(
+                padding: const EdgeInsets.only(left: 30.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 18,
+                    ),
+                   
+                    //1
+                    Row(
+                      children: <Widget>[
+                        Icon(Icons.devices, size: 30.0, color: Constants.card2),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10.0),
+                        ),
+                        Text(
+                          'Total of Sold Product Amount',
+                          style: TextStyle(color: Colors.black, fontSize: 15.0),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                    //2
+                    Row(
+                      children: <Widget>[
+                        Icon(Icons.chat_bubble,
+                            size: 30.0, color: Constants.card3),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10.0),
+                        ),
+                        Text(
+                          'Total Messages',
+                          style: TextStyle(color: Colors.black, fontSize: 15.0),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 4,
+                    ),
+                    //3
+                    Row(
+                      children: <Widget>[
+                        Icon(Icons.people, size: 30.0, color: Constants.card4),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10.0),
+                        ),
+                        Text(
+                          'Total Users',
+                          style: TextStyle(color: Colors.black, fontSize: 15.0),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                     SizedBox(
+                      height: 4,
+                    ),
+                    //4
+                     Row(
+                      children: <Widget>[
+                        //Card1
+                        Icon(Icons.euro_symbol,
+                            size: 30.0, color: Constants.card1),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10.0),
+                        ),
+                        Text(
+                          'Total of Product Amount',
+                          style: TextStyle(color: Colors.black, fontSize: 15.0),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                   
+                    SizedBox(
+                      height: 4,
+                    ),
+
+                    SizedBox(
+                      height: 18,
+                    ),
+                  ],
+                ),
               ),
-              subtitle: Text(
-                dashboardModel.totalUser.toString(),
-                style: TextStyle(color: secColor, fontSize: 30.0),
-                textAlign: TextAlign.center,
+              const SizedBox(
+                width: 28,
               ),
-            ),
-          ),
-          color: card4,
-        ),
-        
-      ],
-    ));
+            ],
+        ),],
+      ),
+    );
     Widget progress() {
       return Center(
         child: CircularProgressIndicator(),
@@ -142,5 +176,61 @@ class _GridoneState extends State<Gridone> {
     }
 
     return dashboardModel.totalApprovedProduct == null ? progress() : app;
+  }
+
+  List<PieChartSectionData> showingSections() {
+    return List.generate(4, (i) {
+      final isTouched = i == touchedIndex;
+      final double fontSize = isTouched ? 25 : 16;
+      final double radius = isTouched ? 100 : 80;
+      switch (i) {
+        case 0:
+          return PieChartSectionData(
+            color: Constants.card1,
+            value: 45,
+            title: '€ ' + dashboardModel.totalProductAmount.toString(),
+            radius: radius,
+            titleStyle: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xffffffff)),
+          );
+        case 1:
+          return PieChartSectionData(
+            color: Constants.card2,
+            value: 25,
+            title: '€ ' + dashboardModel.totalSoldProductAmount.toString(),
+            radius: radius,
+            titleStyle: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xffffffff)),
+          );
+        case 2:
+          return PieChartSectionData(
+            color: Constants.card3,
+            value: 15,
+            title: dashboardModel.totalMessage.toString(),
+            radius: radius,
+            titleStyle: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xffffffff)),
+          );
+        case 3:
+          return PieChartSectionData(
+            color: Constants.card4,
+            value: 15,
+            title: dashboardModel.totalUser.toString(),
+            radius: radius,
+            titleStyle: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xffffffff)),
+          );
+        default:
+          return null;
+      }
+    });
   }
 }

@@ -1,5 +1,6 @@
 import 'package:app_drawer/screens/login.dart';
 import 'package:app_drawer/screens/users.dart';
+import 'package:app_drawer/services/authrepo.dart';
 import 'package:flutter/material.dart';
 import 'package:app_drawer/utilis/constants.dart' as Constants;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -13,7 +14,10 @@ class MyDrawer extends StatefulWidget {
 
 class MyDrawerState extends State<MyDrawer> {
   LoginState loginState = LoginState();
-  String value;
+  AuthServices authServices= AuthServices();
+  var value;
+  String user;
+  String username;
   
 
   @override
@@ -25,13 +29,13 @@ class MyDrawerState extends State<MyDrawer> {
     super.initState();
   }
 
-  Future<String> readCreds() async {
-    value = await loginState.storage.read(key: "token1");
-    return value;
+  Future<dynamic> readCreds() async {
+    value = await loginState.storage.readAll();
+    user = await value["token2"];
+    username = await value["token1"];
+    return [user, username];
   }
-
   
-
   Color mainColor = Constants.mainColor;
   Color secColor = Constants.secTextColor;
   Color textColor = Constants.textColor;
@@ -68,17 +72,23 @@ class MyDrawerState extends State<MyDrawer> {
               ),
             ),
             Text(
-         //     value,
-              'Admin',
+              (user == null)? 'Admin': user,
               style: TextStyle(
                   color: textColor,
                   fontSize: 12.0,
                   fontWeight: FontWeight.bold),
             ),
             Text(
-              'Admin',
+              (username == null)? 'Admin': 'Username: '+username,
               style: TextStyle(color: mainColor, fontSize: 10.0),
-            )
+            ),
+            // Text(
+            //   'Admin',
+            //   style: TextStyle(
+            //     color: mainColor, 
+            //     fontSize: 10.0
+            //     ),
+            //   )
           ],
         ),
       ),

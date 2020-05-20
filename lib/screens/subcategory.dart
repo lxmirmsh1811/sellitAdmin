@@ -60,7 +60,8 @@ class SubCategoryState extends State<SubCategory>{
     var app = ListView.builder(
       itemCount: subcategoryModel.length == null ? 0 : subcategoryModel.length, 
       itemBuilder: (BuildContext context, int index){
-        return Card(
+        return Container(
+          height: 70.0,
           margin: EdgeInsets.all(10.0),
           child: ListTile(
             leading: CircleAvatar(

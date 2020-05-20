@@ -61,8 +61,12 @@ class _PendingProductsState extends State<PendingProducts> {
           }
           List<dynamic> imageUrls = List<dynamic>();
           productModel.image.forEach((i){
+            if (i.url == "") imageUrls.add(NetworkImage('https://i.ibb.co/hDFyMGH/temp.jpg'));
+            else{
             imageUrls.add(NetworkImage(i.url));
+            }
           });
+    
           return Padding(
             padding: EdgeInsets.all(5.0),
             child: InkWell(
@@ -92,7 +96,10 @@ class _PendingProductsState extends State<PendingProducts> {
                         ],
                       ),
                     ),
-                    child: Carousel(images: imageUrls, autoplay: false, dotSize: 1,)
+                    child: Carousel(
+                      images: imageUrls , 
+                      autoplay: false, 
+                      dotSize: 1,)
                     // child: FadeInImage.memoryNetwork(
                     //   placeholder: kTransparentImage,
                     //   image: productModel.image.first.url,

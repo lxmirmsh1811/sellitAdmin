@@ -16,8 +16,9 @@ class Dashboard extends StatefulWidget{
 class DashboardState extends State<Dashboard> with SingleTickerProviderStateMixin{
   
   TabController tabController;
-
+ 
   DashboardState(this.tabController);
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +26,10 @@ class DashboardState extends State<Dashboard> with SingleTickerProviderStateMixi
     var app = TabBarView(
       controller: tabController,
       children: <Widget>[
-        Gridone(),
-        Gridtwo(),
+        // Gridone(),
+       PieChartSample2(),
+       Gridtwo(),
+       
       ],
       
     );

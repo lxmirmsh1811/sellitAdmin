@@ -42,8 +42,8 @@ class HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMi
         bottom: TabBar(
           controller: tabController,
           tabs: <Widget>[
-            Tab(icon: Icon(Icons.dashboard),),
-            Tab(icon: Icon(Icons.assessment))
+            Tab(icon: Icon(Icons.dashboard,color: Colors.black54,),),
+            Tab(icon: Icon(Icons.assessment, color: Colors.black54,), text: 'Status',)
           ],
         ),
       ),

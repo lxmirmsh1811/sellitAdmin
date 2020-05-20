@@ -26,33 +26,39 @@ class ProductState extends State<Product> {
 
     List<dynamic> imageUrls = List<dynamic>();
     productModel.image.forEach((i) {
-      imageUrls.add(NetworkImage(i.url));
+      if (i.url == "")
+        imageUrls.add(NetworkImage('https://i.ibb.co/hDFyMGH/temp.jpg'));
+      else {
+        imageUrls.add(NetworkImage(i.url));
+      }
     });
 
     var app = Scaffold(
-      resizeToAvoidBottomPadding: false,
-      appBar: AppBar(
-        title: Wrap(children: <Widget>[Text(productModel.name)]),
-        iconTheme: IconThemeData(color: iconColor),
-      ),
-      body: ListView(
-       scrollDirection: Axis.vertical,
-        children: <Widget>[
-          _getImages(imageUrls),
-        Padding(padding: EdgeInsets.only(bottom: 10.0),),
-        _getDescription(productModel.description),
-        _getMoreDescription(productModel.more_details),
-        _getButtonFunc(productModel)
-        ],
-      )
-      // body: Column(children: <Widget>[
-      //   _getImages(imageUrls),
-      //   Padding(padding: EdgeInsets.only(bottom: 10.0),),
-      //   _getDescription(productModel.description),
-      //   _getMoreDescription(productModel.more_details),
-      //   _getButtonFunc(productModel)
-      // ]),
-    );
+        resizeToAvoidBottomPadding: false,
+        appBar: AppBar(
+          title: Wrap(children: <Widget>[Text(productModel.name)]),
+          iconTheme: IconThemeData(color: iconColor),
+        ),
+        body: ListView(
+          scrollDirection: Axis.vertical,
+          children: <Widget>[
+            _getImages(imageUrls),
+            Padding(
+              padding: EdgeInsets.only(bottom: 10.0),
+            ),
+            _getDescription(productModel.description),
+            _getMoreDescription(productModel.more_details),
+            _getButtonFunc(productModel)
+          ],
+        )
+        // body: Column(children: <Widget>[
+        //   _getImages(imageUrls),
+        //   Padding(padding: EdgeInsets.only(bottom: 10.0),),
+        //   _getDescription(productModel.description),
+        //   _getMoreDescription(productModel.more_details),
+        //   _getButtonFunc(productModel)
+        // ]),
+        );
     return app;
   }
 
@@ -86,14 +92,14 @@ class ProductState extends State<Product> {
       padding: EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            _getTitle(),
-            Text(
-              productModel.description,
-              textAlign: TextAlign.start,
-              style: TextStyle(fontSize: 18.0),
-            ),
-          ],
+        children: <Widget>[
+          _getTitle(),
+          Text(
+            productModel.description,
+            textAlign: TextAlign.start,
+            style: TextStyle(fontSize: 18.0),
+          ),
+        ],
       ),
     );
   }
@@ -101,60 +107,59 @@ class ProductState extends State<Product> {
   Widget _getButtonFunc(ProductModel productModel) {
     Color btnColor = Constants.btnColor;
     return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.all(30.0),
-          ),
-          RaisedButton(
-            elevation: 5.0,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0)),
-            child: Text('Approve'),
-            color: btnColor,
-            onPressed: () {
-              _postApproveStatus(productModel.product_id).then((data) {
-                if (data) {
-                  debugPrint('Product Approved');
-                  _showApproveDialog(productModel.name);
-                  //Navigator.of(context).pushNamed("/approved");
-                }
-              });
-            },
-          ),
-          Padding(
-            padding: EdgeInsets.all(30.0),
-          ),
-          RaisedButton(
-            elevation: 5.0,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0)),
-            child: Text('Deny'),
-            color: Colors.grey,
-            onPressed: () {
-              _postDenyStatus(productModel.product_id).then((data) {
-                if (data) {
-                  debugPrint('Product Denied');
-                  _showDenyDialog(productModel.name);
-                 // Navigator.of(context).pushNamed("/inactive");
-                }
-              });
-            },
-          ),
-          Padding(
-            padding: EdgeInsets.all(30.0),
-          ),
-        ],
-     // ),
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.all(30.0),
+        ),
+        RaisedButton(
+          elevation: 5.0,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+          child: Text('Approve'),
+          color: btnColor,
+          onPressed: () {
+            _postApproveStatus(productModel.product_id).then((data) {
+              if (data) {
+                debugPrint('Product Approved');
+                _showApproveDialog(productModel.name);
+                //Navigator.of(context).pushNamed("/approved");
+              }
+            });
+          },
+        ),
+        Padding(
+          padding: EdgeInsets.all(30.0),
+        ),
+        RaisedButton(
+          elevation: 5.0,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+          child: Text('Deny'),
+          color: Colors.grey,
+          onPressed: () {
+            _postDenyStatus(productModel.product_id).then((data) {
+              if (data) {
+                debugPrint('Product Denied');
+                _showDenyDialog(productModel.name);
+                // Navigator.of(context).pushNamed("/inactive");
+              }
+            });
+          },
+        ),
+        Padding(
+          padding: EdgeInsets.all(30.0),
+        ),
+      ],
+      // ),
     );
   }
 
   Widget _getTitle() {
-    return
-        Text(
-          'Product Description',
-          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-          textAlign: TextAlign.left,  
+    return Text(
+      'Product Description',
+      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+      textAlign: TextAlign.left,
     );
   }
 
@@ -164,7 +169,8 @@ class ProductState extends State<Product> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text('More Details', style: TextStyle(fontSize:18.0, fontWeight: FontWeight.bold)),
+          Text('More Details',
+              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
           Text(
             productModel.more_details,
             textAlign: TextAlign.start,
@@ -174,43 +180,42 @@ class ProductState extends State<Product> {
       ),
     );
   }
-  void _showApproveDialog(String name){
-      showDialog(
-      context: context,
-      builder: (BuildContext context){
-        return AlertDialog(
-          title: Text('Product status'),
-          content: Text('Product \'$name\' has been Approved'),
-          actions: <Widget>[
-            FlatButton(
-              child: Text('Ok'),
-              onPressed: (){
-                Navigator.of(context).pushNamed("/approved");
-              },
+
+  void _showApproveDialog(String name) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(  
+            title: Text('Product status'),
+            content: Text('Product \'$name\' has been Approved'),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pushNamed("/approved");
+                },
               )
-          ],
-        );
-      }
-    );
+            ],
+          );
+        });
   }
 
-  void _showDenyDialog(String name){
-      showDialog(
-      context: context,
-      builder: (BuildContext context){
-        return AlertDialog(
-          title: Text('Product status'),
-          content: Text('Product \'$name\' has been Denied'),
-          actions: <Widget>[
-            FlatButton(
-              child: Text('Ok'),
-              onPressed: (){
-                 Navigator.of(context).pushNamed("/inactive");
-              },
+  void _showDenyDialog(String name) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Product status'),
+            content: Text('Product \'$name\' has been Denied'),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pushNamed("/inactive");
+                },
               )
-          ],
-        );
-      }
-    );
+            ],
+          );
+        });
   }
 }

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:app_drawer/utilis/constants.dart' as Constants;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+
+
 class Login extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -30,31 +32,46 @@ class LoginState extends State<Login> {
       backgroundColor: secColor,
       body: Form(
         key: _formKey,
-        child: Column(
-          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Stack(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.only(top: 50.0),
-            ),
-            InkWell(
-              onTap: () {
-                setState(() {});
-              },
-              child: Image.asset(
-                'images/logo.png',
-                height: 250.0,
-                width: 250.0,
+          //    color: Colors.transparent,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.1), BlendMode.dstATop),
+                    image: AssetImage('images/background1.jpg'),
+                    fit: BoxFit.fitHeight),
               ),
             ),
-            _username(),
-            // Container(
-            //   height: 10.0,
-            // ),
-            _password(),
-            Container(
-              height: 30.0,
+            Column(
+              //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(top: 50.0),
+                ),
+                InkWell(
+                  onTap: () {
+                    setState(() {});
+                  },
+                  child: Image.asset(
+                    'images/logo5.png',
+                    height: 250.0,
+                    width: 250.0,
+                  ),
+                ),
+                _username(),
+                // Container(
+                //   height: 10.0,
+                // ),
+                _password(),
+                Container(
+                  height: 30.0,
+                ),
+                _loginButton(),
+                Padding(padding: EdgeInsets.only(top: 30.0, bottom: 30.0)),
+             //   Icon(Icons.fingerprint)
+              ],
             ),
-            _loginButton(),
           ],
         ),
       ),
@@ -63,7 +80,7 @@ class LoginState extends State<Login> {
   }
 
   Widget _username() {
-    usernameController.text = 'gitswagger';
+   // usernameController.text = 'gitswagger';
     var app = Padding(
         padding: EdgeInsets.all(15.0),
         child: TextFormField(
@@ -135,6 +152,6 @@ class LoginState extends State<Login> {
   }
 
   Future<void> _addCreds(String username) async {
-    await storage.write(key: "token1" , value: username);
+    await storage.write(key: "token1", value: username);
   }
 }

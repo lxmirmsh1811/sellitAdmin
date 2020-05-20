@@ -28,6 +28,7 @@ dependencies:
   transparent_image: ^1.0.0
   carousel_pro: ^1.0.0
   flutter_secure_storage: ^3.3.1+1
+  fl_chart: ^0.8.4
   
 
 dev_dependencies:
@@ -52,6 +53,11 @@ flutter:
   assets:
    - images/admin.png
    - images/logo.png
+   - images/background1.jpg
+   - images/logo2.png
+   - images/temp.jpeg
+   - images/logo4.png
+   - images/logo5.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

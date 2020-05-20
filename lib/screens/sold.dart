@@ -63,7 +63,10 @@ class _SoldProductsState extends State<SoldProducts> {
           }
           List<dynamic> imageUrls = List<dynamic>();
           productModel.image.forEach((i){
+            if (i.url == "") imageUrls.add(NetworkImage('https://i.ibb.co/hDFyMGH/temp.jpg'));
+            else{
             imageUrls.add(NetworkImage(i.url));
+            }
           });
           
           return Padding(

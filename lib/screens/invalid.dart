@@ -25,7 +25,7 @@ class _InvalidProductsState extends State<InvalidProducts> {
   }
 
   Future<void> productGet() async {
-    productModels = await ProductService().getProductsByStatus("5");
+    productModels = await ProductService().getProductsByStatus("4");
   }
 
   @override

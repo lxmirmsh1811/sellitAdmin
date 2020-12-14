@@ -1,5 +1,5 @@
-# SellIT Mobileapp 
- This mobile application is an individual project for a course (Global Software Development) I took during my Master's program. The aplication was built on the Flutter framework powered by Dart and the backend api was written in NodeJs. State Management - BLoC Pattern
+# SellIT_Dashboard MobileApp 
+ This mobile application is an individual project for a course (Global Software Development) I took during my Master's program. The aplication was built on the Flutter framework powered by Dart and the backend api was written in NodeJs. The application provides a dashboard functionality for the Admin to approve or reject products before they are posted for users to buy. 
 
 ## Excutive Summary of the Application
 [Document](https://docs.google.com/document/d/11pKeHCEFNEo_TIwEz3EjIrHNZ2mUv9N7jiiGhmZo47s/edit?usp=sharing) </br>
@@ -39,11 +39,14 @@ Some of the design used in this application was modelled from Olx and N26 mobile
      <td>Search Product with an Image</td>
   </tr>
   <tr>
-    <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image1.jpg"></td>
-    <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image2.jpg"></td>
-       <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image3.jpg"></td>
-          <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image7.jpg"></td>
-             <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/Screenshot_2020-06-02-14-26-36-356_com.example.sellit_mobileapp%5B1%5D.jpg"></td>
+    <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/lxmirmsh1811/sellitAdmin/blob/master/ApplicationUI/Login.png"></td>
+    <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/lxmirmsh1811/sellitAdmin/blob/master/ApplicationUI/DashboardOne.png"></td>
+    <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/lxmirmsh1811/sellitAdmin/blob/master/ApplicationUI/DashboardTwo.png"></td>
+    <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/lxmirmsh1811/sellitAdmin/blob/master/ApplicationUI/Drawer.png"></td>
+    <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/lxmirmsh1811/sellitAdmin/blob/master/ApplicationUI/ApprovedProductList.png"></td>
+    <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/lxmirmsh1811/sellitAdmin/blob/master/ApplicationUI/Categories.png"></td>
+    <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/lxmirmsh1811/sellitAdmin/blob/master/ApplicationUI/SubCategories.png"></td>
+   <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/lxmirmsh1811/sellitAdmin/blob/master/ApplicationUI/Users.png"></td>
    
   </tr>
     <tr>

@@ -29,7 +29,6 @@ flutter doctor
 ```
 
 # Some UI Screens of the Application
-Some of the design used in this application was modelled from Olx and N26 mobile application. 
 <table>
   <tr>
     <td>Application Login</td>

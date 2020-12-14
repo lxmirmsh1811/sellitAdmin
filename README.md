@@ -1,4 +1,4 @@
-# SellIT_Dashboard MobileApp 
+# SelliT_Dashboard MobileApp 
  This mobile application is an individual project for a course (Global Software Development) I took during my Master's program. The aplication was built on the Flutter framework powered by Dart and the backend api was written in NodeJs. The application provides a dashboard functionality for the Admin to approve or reject products before they are posted for users to buy. 
 
 ## Excutive Summary of the Application

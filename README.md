@@ -32,32 +32,29 @@ flutter doctor
 Some of the design used in this application was modelled from Olx and N26 mobile application. 
 <table>
   <tr>
-    <td>Landing Screen Page</td>
-     <td>Chat Screen Page</td>
-     <td>Posted Product Page</td>
-     <td>Post a Product 1st Page</td>
-     <td>Search Product with an Image</td>
+    <td>Application Login</td>
+     <td>Product Status</td>
+     <td>Product Stats</td>
+     <td>Application Drawer</td>
   </tr>
   <tr>
     <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/lxmirmsh1811/sellitAdmin/blob/master/ApplicationUI/Login.png"></td>
-    <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/lxmirmsh1811/sellitAdmin/blob/master/ApplicationUI/DashboardOne.png"></td>
     <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/lxmirmsh1811/sellitAdmin/blob/master/ApplicationUI/DashboardTwo.png"></td>
+    <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/lxmirmsh1811/sellitAdmin/blob/master/ApplicationUI/DashboardOne.png"></td>
     <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/lxmirmsh1811/sellitAdmin/blob/master/ApplicationUI/Drawer.png"></td>
+   
+  </tr>
+    <tr>
+ <td>Approved Products</td>
+        <td>Product Categories</td>
+        <td>Sub Categories</td>
+        <td>Users</td>
+  </tr>
+  <tr>
     <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/lxmirmsh1811/sellitAdmin/blob/master/ApplicationUI/ApprovedProductList.png"></td>
     <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/lxmirmsh1811/sellitAdmin/blob/master/ApplicationUI/Categories.png"></td>
     <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/lxmirmsh1811/sellitAdmin/blob/master/ApplicationUI/SubCategories.png"></td>
    <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/lxmirmsh1811/sellitAdmin/blob/master/ApplicationUI/Users.png"></td>
-   
-  </tr>
-    <tr>
-    <td>Select Category</td>
-     <td>Post a Product</td>
-     <td>Profile Page</td>
-  </tr>
-  <tr>
-    <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/category.jpg"></td>
-    <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image8.jpg"></td>
-       <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image4.jpg"></td>  
   </tr>
  </table>
  

@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:app_drawer/utilis/constants.dart' as Constants;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-
-
 class Login extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -35,10 +33,11 @@ class LoginState extends State<Login> {
         child: Stack(
           children: <Widget>[
             Container(
-          //    color: Colors.transparent,
+              //    color: Colors.transparent,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.1), BlendMode.dstATop),
+                    colorFilter: ColorFilter.mode(
+                        Colors.black.withOpacity(0.1), BlendMode.dstATop),
                     image: AssetImage('images/background1.jpg'),
                     fit: BoxFit.fitHeight),
               ),
@@ -69,7 +68,7 @@ class LoginState extends State<Login> {
                 ),
                 _loginButton(),
                 Padding(padding: EdgeInsets.only(top: 30.0, bottom: 30.0)),
-             //   Icon(Icons.fingerprint)
+                //   Icon(Icons.fingerprint)
               ],
             ),
           ],
@@ -80,7 +79,7 @@ class LoginState extends State<Login> {
   }
 
   Widget _username() {
-   // usernameController.text = 'gitswagger';
+    // usernameController.text = 'gitswagger';
     var app = Padding(
         padding: EdgeInsets.all(15.0),
         child: TextFormField(
